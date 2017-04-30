@@ -1,14 +1,13 @@
 #! /usr/bin/env ruby
 
 class AutoRspec
-
   def initialize
-     @files = nil
-     loop
+    @files = nil
+    loop
   end
- 
+
   def loop
-    while true do
+    loop do
       run if timestamps_changed?
       sleep 1
     end
@@ -19,19 +18,18 @@ class AutoRspec
   end
 
   def timestamps_changed?
-    new_timestamps  = timestamps
+    new_timestamps = timestamps
     return false if new_timestamps == @timestamps
     @timestamps = new_timestamps
-  end 
+  end
 
   def timestamps
     hash = {}
     Dir.glob('./*').each do |file|
-      hash[file] = File.stat(file).mtime  
+      hash[file] = File.stat(file).mtime
     end
     hash
   end
-
 end
 
 AutoRspec.new
