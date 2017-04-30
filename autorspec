@@ -34,9 +34,4 @@ class AutoRspec
 
 end
 
-begin
 AutoRspec.new
-rescue => x
-puts x 
-p x.class
-end
