@@ -1,0 +1,42 @@
+#! /usr/bin/env ruby
+
+class AutoRspec
+
+  def initialize
+     @files = nil
+     loop
+  end
+ 
+  def loop
+    while true do
+      run if timestamps_changed?
+      sleep 1
+    end
+  end
+
+  def run
+    Kernel.system('rspec --color .')
+  end
+
+  def timestamps_changed?
+    new_timestamps  = timestamps
+    return false if new_timestamps == @timestamps
+    @timestamps = new_timestamps
+  end 
+
+  def timestamps
+    hash = {}
+    Dir.glob('./*').each do |file|
+      hash[file] = File.stat(file).mtime  
+    end
+    hash
+  end
+
+end
+
+begin
+AutoRspec.new
+rescue => x
+puts x 
+p x.class
+end
