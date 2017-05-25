@@ -3,10 +3,10 @@
 class AutoRspec
   def initialize
     @files = nil
-    loop
+    start
   end
 
-  def loop
+  def start
     loop do
       run if timestamps_changed?
       sleep 1
