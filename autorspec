@@ -25,7 +25,7 @@ class AutoRspec
 
   def timestamps
     hash = {}
-    Dir.glob('./*').each do |file|
+    Dir.glob('*/*').each do |file|
       hash[file] = File.stat(file).mtime
     end
     hash
